@@ -1,0 +1,6 @@
+@import url('bulma/css/bulma.css');
+@import url('@fortawesome/fontawesome-free/css/all.css');
+
+body {
+    background-color: #C1CEFE;
+}
