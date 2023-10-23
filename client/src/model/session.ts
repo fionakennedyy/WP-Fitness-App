@@ -8,8 +8,6 @@ const session = reactive({
   redirectUrl: null as string | null,
 })
 
-
-
 export function getSession(){
   return session;
 }
@@ -24,7 +22,7 @@ export function useLogin(){
         session.user = user;
 
         router.push(session.redirectUrl || "/");
-
+        
         return user;
       }
       return null;

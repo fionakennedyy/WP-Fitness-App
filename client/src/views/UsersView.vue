@@ -12,28 +12,56 @@ setTimeout(() => {
   isLoading.value = false;
 }, 1000)
 
+const editUser = (userId: number | undefined) => {
+  if (userId !== undefined) {
+    console.log("Editing user with ID:", userId);
+    // Load the JSON data from users.json
+  }
+};
+
+const deleteUser = (userId: number | undefined) => {
+  if (userId !== undefined) {
+    console.log("Deleting user with ID:", userId);
+  }
+};
 </script>
 
 <template>
   <div>
-    <h1>Users Page</h1>
-    <h1 class="title">User List</h1>
+    <h1 class="title ml-3">User List</h1>
     <progress v-if="isLoading" class="progress is-success">Loading...</progress>
 
-    <table class="table">
-        <thead>
+    <div class="columns is-centered">
+      <div class="column is-one-third">
+        <table class="table">
+          <thead>
             <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Role</th>
+              <th>Id</th>
+              <th>Image</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Role</th>
             </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-</div>
+          </thead>
+          <tbody>
+            <tr v-for="user in users" :key="user.id">
+              <td>{{ user.id }}</td>
+              <td><img :src="user.image" alt=""></td>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.role }}</td>
+              <td>
+                <button @click="editUser(user.id)">Edit</button>
+                <button @click="deleteUser(user.id)">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped></style>

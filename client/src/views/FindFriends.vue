@@ -4,7 +4,7 @@
 
 <template>
     <div>
-        <h1>Find Friends</h1>
+        <h1 class="title ml-3">Find Friends</h1>
     </div>
 </template>
 

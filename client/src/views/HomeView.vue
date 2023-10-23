@@ -21,7 +21,7 @@ function shouldDisplay(task: { id?: number, text: string, completed: boolean}) {
 <template>
   <main class="columns">
     <div class="column is-full">
-      <h1>Welcome!</h1>
+      <h1 class="title ml-3">Welcome!</h1>
     </div>
 
     <div class="column is-half-desktop is-centered">

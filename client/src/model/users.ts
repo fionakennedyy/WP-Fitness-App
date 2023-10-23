@@ -7,11 +7,12 @@ export interface User {
   email: string,
   password: string,
   role: "admin" | "user",
+  image: string,
   token?: string
 }
 
 export function getUsers(): User[] {
-  return data.users.map( x => ({ ...x, role: x.id <= 5 ? 'admin' : 'user' }) ) 
+  return data.users.map( x => ({ ...x, role: x.id <= 1 ? 'admin' : 'user' }) ) 
 }
 
 export function getUserByEmail(email: string): User | undefined {
