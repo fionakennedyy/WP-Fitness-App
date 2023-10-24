@@ -18,7 +18,7 @@ const isActive = ref(false);
         >
           <img
             class="logo"
-            src="../../public/favicon.ico"
+            src="favicon.ico"
             alt="Vue logo"
           />
       </a>

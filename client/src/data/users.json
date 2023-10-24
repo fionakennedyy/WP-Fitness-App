@@ -7,7 +7,7 @@
       "email": "kennedyf2@newpaltz.edu",
       "password": "fkpassword",
       "role": "admin",
-      "image": "../../public/me.png"
+      "image": "me.png"
     },
     {
       "id": 2,
@@ -16,7 +16,7 @@
       "email": "marcelineabadeer@a.com",
       "password": "mapassword",
       "role": "user",
-      "image": "../../public/marceline.png"
+      "image": "marceline.png"
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "email": "jasonvorhees@a.com",
       "password": "jvpassword",
       "role": "user",
-      "image": "../../public/jason.png"
+      "image": "jason.png"
     }
         ],
   "total": 3,

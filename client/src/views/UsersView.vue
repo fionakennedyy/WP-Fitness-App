@@ -53,8 +53,8 @@ const deleteUser = (userId: number | undefined) => {
               <td>{{ user.email }}</td>
               <td>{{ user.role }}</td>
               <td>
-                <button @click="editUser(user.id)">Edit</button>
-                <button @click="deleteUser(user.id)">Delete</button>
+                <button @click.prevent="editUser(user.id)">Edit</button>
+                <button @click.prevent="deleteUser(user.id)">Delete</button>
               </td>
             </tr>
           </tbody>

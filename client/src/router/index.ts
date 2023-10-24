@@ -38,7 +38,8 @@ const router = createRouter({
     {
       path: '/feed',
       name: 'feed',
-      component: FeedView
+      component: FeedView,
+      beforeEnter: requireLogin
     },
     {
       path: '/findfriends',

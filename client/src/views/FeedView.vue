@@ -100,7 +100,7 @@ export default {
                 <div class="modal-card has-background-white">
                     <header class="modal-card-head">
                         <h3 class="modal-card-title">Log Workout:</h3>
-                        <button class="delete" aria-label="close" @click="closeModal"></button>
+                        <button class="delete" aria-label="close" @click.prevent="closeModal"></button>
                     </header>
                     <section class="modal-card-body">
 
@@ -142,12 +142,12 @@ export default {
                     </section>
                     <footer class="modal-card-foot">
 
-                        <button class="button" @click="closeModal">Cancel</button>
+                        <button class="button" @click.prevent="closeModal">Cancel</button>
                     </footer>
                 </div>
             </div>
 
-            <button id="logworkout" @click="openModal" class="button is-fullwidth is-success"><strong>Log
+            <button id="logworkout" @click.prevent="openModal" class="button is-fullwidth is-success"><strong>Log
                     Workout</strong></button>
 
             <h1 class="title has-text-danger" v-if="formDataArray.length === 0">No workouts posted</h1>
@@ -159,7 +159,7 @@ export default {
                     </p>
                 </figure>
                 <div class="media-content">
-                    <div class="media-left">
+                    <div class="content">
                         <p>
                             <strong>{{ entry.userName }}</strong> <small>{{ entry.date }}</small>
                         </p>
