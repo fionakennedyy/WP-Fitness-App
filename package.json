@@ -6,12 +6,9 @@
   "license": "ISC",
   "private": "true",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
+    "build": "cd client && npm install && npm run build",
+    "start": "node server/index.js",
+    "dev": "nodeon --watch ./server server/index.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.15.4",
