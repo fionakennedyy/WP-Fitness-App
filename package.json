@@ -6,7 +6,7 @@
   "license": "ISC",
   "private": "true",
   "scripts": {
-    "build": "cd client && npm install && npm run build",
+    "build": "npm i && cd client && npm i && npm run build",
     "start": "node server/index.js",
     "dev": "nodeon --watch ./server server/index.js"
   },
