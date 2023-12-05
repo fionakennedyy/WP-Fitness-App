@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 require('dotenv').config();
 const userController = require('./controllers/users');
-const productController = require('./controllers/products');
+const activityController = require('./controllers/activities');
 const { parseAuthorizationToken, requireUser } = require('./middleware/authorization');
 const app = express();
 
@@ -25,7 +25,7 @@ app
 
     .use(parseAuthorizationToken)
 
-    .use('/api/v1/products', requireUser(), productController)
+    .use('/api/v1/activities', requireUser(), activityController)
     .use('/api/v1/users', userController)
 
     .get('*', (req, res) => {
