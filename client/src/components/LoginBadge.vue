@@ -26,7 +26,7 @@ const doLogout = () => {
   <div class="media has-text-right" v-if="session.user">
     <figure class="media-left" style="height: 48;">
       <p class="image is-48x48">
-        <img :src="session.user.image" alt="User Image" class="is-rounded">
+        <!--<img :src="session.user.image" alt="User Image" class="is-rounded">-->
       </p>
     </figure>
     <div class="media-content">

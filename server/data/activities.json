@@ -1,0 +1,102 @@
+[
+    {
+      "id": 1,
+      "title": "Morning Run",
+      "description": "Start your day with a refreshing jog",
+      "type": "Cardio",
+      "duration": "00:45",
+      "date": "2023-12-05",
+      "userID": 101,
+      "images": ["run1.jpg", "run2.jpg"]
+    },
+    {
+      "id": 2,
+      "title": "High-Intensity Interval Training (HIIT)",
+      "description": "Intense workout for maximum calorie burn",
+      "type": "HIIT",
+      "duration": "01:00",
+      "date": "2023-12-08",
+      "userID": 102,
+      "images": ["hiit1.jpg", "hiit2.jpg"]
+    },
+    {
+      "id": 3,
+      "title": "Yoga for Strength",
+      "description": "Build strength and flexibility through yoga poses",
+      "type": "Strength Training",
+      "duration": "01:30",
+      "date": "2023-12-12",
+      "userID": 103,
+      "images": ["yoga_strength1.jpg", "yoga_strength2.jpg"]
+    },
+    {
+      "id": 4,
+      "title": "Circuit Training",
+      "description": "Rotate through various exercises for a full-body workout",
+      "type": "Circuit",
+      "duration": "01:30",
+      "date": "2023-12-15",
+      "userID": 104,
+      "images": ["circuit1.jpg", "circuit2.jpg"]
+    },
+    {
+      "id": 5,
+      "title": "Pilates Session",
+      "description": "Focus on core strength and body awareness",
+      "type": "Pilates",
+      "duration": "01:00",
+      "date": "2023-12-18",
+      "userID": 105,
+      "images": ["pilates1.jpg", "pilates2.jpg"]
+    },
+    {
+      "id": 6,
+      "title": "CrossFit Workout",
+      "description": "Challenge yourself with a variety of functional movements",
+      "type": "CrossFit",
+      "duration": "02:00",
+      "date": "2023-12-22",
+      "userID": 106,
+      "images": ["crossfit1.jpg", "crossfit2.jpg"]
+    },
+    {
+      "id": 7,
+      "title": "Kickboxing Class",
+      "description": "Combine cardio and strength in a high-energy kickboxing session",
+      "type": "Kickboxing",
+      "duration": "01:30",
+      "date": "2023-12-25",
+      "userID": 107,
+      "images": ["kickboxing1.jpg", "kickboxing2.jpg"]
+    },
+    {
+      "id": 8,
+      "title": "Zumba Party",
+      "description": "Dance your way to fitness with lively Zumba routines",
+      "type": "Dance",
+      "duration": "01:00",
+      "date": "2023-12-28",
+      "userID": 108,
+      "images": ["zumba1.jpg", "zumba2.jpg"]
+    },
+    {
+      "id": 9,
+      "title": "Outdoor Bootcamp",
+      "description": "Full-body workout in the great outdoors",
+      "type": "Outdoor",
+      "duration": "02:00",
+      "date": "2024-01-02",
+      "userID": 109,
+      "images": ["bootcamp1.jpg", "bootcamp2.jpg"]
+    },
+    {
+      "id": 10,
+      "title": "Swimming for Fitness",
+      "description": "Engage in a low-impact yet effective fitness activity",
+      "type": "Swimming",
+      "duration": "01:30",
+      "date": "2024-01-05",
+      "userID": 110,
+      "images": ["swimming1.jpg", "swimming2.jpg"]
+    }
+  ]

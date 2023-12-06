@@ -37,7 +37,7 @@ const deleteUser = (userId: number | undefined) => {
           <thead>
             <tr>
               <th>Id</th>
-              <th>Image</th>
+              <!--<th>Image</th>-->
               <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>
@@ -47,7 +47,7 @@ const deleteUser = (userId: number | undefined) => {
           <tbody>
             <tr v-for="user in users" :key="user.id">
               <td>{{ user.id }}</td>
-              <td><img :src="user.image" alt=""></td>
+              <!--<td><img :src="user.image" alt=""></td>-->
               <td>{{ user.firstName }}</td>
               <td>{{ user.lastName }}</td>
               <td>{{ user.email }}</td>
