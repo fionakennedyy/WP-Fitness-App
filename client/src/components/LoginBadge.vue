@@ -42,9 +42,7 @@ const doLogout = () => {
     </div>
   </div>
   <div class="buttons" v-else>
-    <a class="button is-primary">
-      <strong>Sign up</strong>
-    </a>
+    <RouterLink class="button is-primary" to="/register">Register</RouterLink>
     <!--<a class="button is-light" @click.prevent="doLogin">
       Log in
     </a>-->

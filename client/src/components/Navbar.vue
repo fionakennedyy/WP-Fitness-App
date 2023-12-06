@@ -33,9 +33,7 @@ const isActive = ref(false);
         <RouterLink class="navbar-item" to="/about">About</RouterLink>
         <RouterLink class="navbar-item" to="/activity">My Activity</RouterLink>
         <RouterLink class="navbar-item" to="/feed">Feed</RouterLink>
-        <RouterLink class="navbar-item" to="/findfriends"
-          >Find Friends</RouterLink
-        >
+        <RouterLink class="navbar-item" to="/findfriends">Find Friends</RouterLink>
         <div class="navbar-item has-dropdown is-hoverable" v-if="session.user?.role == 'admin'">
           <a class="navbar-link">Admin</a>
           <div class="navbar-dropdown">

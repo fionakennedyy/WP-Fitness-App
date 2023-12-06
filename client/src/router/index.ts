@@ -7,6 +7,7 @@ import ActivityView from '../views/ActivityView.vue'
 import FindFriends from '../views/FindFriends.vue'
 import UsersView from '../views/UsersView.vue'
 import { getSession } from '@/model/session'
+import RegisterView from '@/views/RegisterView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterView
     },
     {
       path: '/activity',
