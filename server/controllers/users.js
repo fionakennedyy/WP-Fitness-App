@@ -3,9 +3,17 @@ const { getAll, get, search, create, update, remove, login, register } = require
 const { requireUser } = require('../middleware/authorization');
 const router = express.Router();
 
+/*
+  Route handler for HTTP GET requests
+  get() specifies that handler should be invoked when a GET request is made to root path
+  the arrow function serves as the handler
+  req: HTTP request
+  res: object rep the HTTP response sent to client
+  next: function, passes control to next middleware/route handler
+*/
 router.get('/', (req, res, next) => {
 
-    res.send(getAll());
+    res.send(getAll()); // sends response to client
 
 })
     .get('/search', (req, res, next) => {
@@ -55,7 +63,7 @@ router.get('/', (req, res, next) => {
     })
     .delete('/:id', requireUser(true), (req, res, next) => {
 
-        remove(+req.params.id);
+        remove(+req.params.id); // '+' converts ID to a number
         res.send({ message: 'User removed' });
     });
 

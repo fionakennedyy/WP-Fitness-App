@@ -66,7 +66,7 @@
         <hr>
         <div class="field">
           <p class="control">
-            <button class="button is-success">Login</button>
+            <button class="button is-success" type="submit">Submit</button>
           </p>
         </div>
       </div>

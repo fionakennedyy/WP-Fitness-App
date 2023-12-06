@@ -1,4 +1,3 @@
-// @ts-check
 /**
 * @typedef {Object} Bank
 * @property {string} cardExpire
@@ -175,8 +174,8 @@ function update(newValues) {
         throw new Error('User not found');
     }
     data.users[index] = {
-        ...data.users[index],
-        ...newValues,
+        ...data.users[index],   // copy
+        ...newValues,   // new
     };
     return data.users[index];
 }
@@ -219,3 +218,4 @@ function verifyJWT(token) {
 module.exports = {
     getAll, get, search, create, update, remove, login, register, generateJWT, verifyJWT
 };
+

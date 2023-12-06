@@ -19,7 +19,4 @@ const session = getSession();
 
 <style scoped>
 
-  .container {
-    background-color: #F4F3EE;
-  }
 </style>

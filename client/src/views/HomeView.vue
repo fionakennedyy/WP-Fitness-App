@@ -11,31 +11,23 @@ function addTask() {
   newTask.value = ""; //empties task input bar
 };
 
-function shouldDisplay(task: { id?: number, text: string, completed: boolean}) {
+function shouldDisplay(task: { id?: number, text: string, completed: boolean }) {
   return (tabState.value == 'Current' && !task.completed) ||
     (tabState.value == 'Completed' && task.completed) ||
     tabState.value == 'All';
-  }
+}
 </script>
 
 <template>
-  <main class="columns">
-    <div class="column is-full">
-      <h1 class="title ml-3">Welcome!</h1>
-    </div>
-
-    <div class="column is-half-desktop is-centered">
+  <main class="columns is-centered">
+    <div class="column is-half-desktop">
+      <h1 class="title ml-3 has-text-centered">Welcome!</h1>
       <div class="panel is-primary">
         <p class="panel-heading">To Do</p>
         <div class="panel-block">
           <p class="control has-icons-left">
-            <input
-              class="input"
-              type="text"
-              placeholder="What do you want to do?"
-              @keypress.enter="addTask"
-              v-model="newTask"
-            />
+            <input class="input" type="text" placeholder="What do you want to do?" @keypress.enter="addTask"
+              v-model="newTask" />
             <!--v-model -->
             <span class="icon is-left">
               <i class="fas fa-plus" aria-hidden="true"></i>
@@ -44,7 +36,8 @@ function shouldDisplay(task: { id?: number, text: string, completed: boolean}) {
         </div>
         <p class="panel-tabs">
           <!--listening for click event, .prevent modifier means do not send to the browser-->
-          <a v-for="tab in tabList" :class="{'is-active': tabState == tab}" @click.prevent="tabState = tab">{{ tab }}</a>
+          <a v-for="tab in tabList" :class="{ 'is-active': tabState == tab }" @click.prevent="tabState = tab">{{ tab
+          }}</a>
           <a>Completed</a>
           <a>All</a>
         </p>
