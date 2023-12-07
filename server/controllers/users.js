@@ -10,7 +10,7 @@ const { requireUser } = require('../middleware/authorization');
 const router = express.Router();
 
 /*
-  Route handler for HTTP GET requests
+  Route handler for HTTP GET requests 
   get() specifies that handler should be invoked when a GET request is made to root path
   the arrow function serves as the handler
   req: HTTP request
@@ -39,20 +39,21 @@ router.get('/', (req, res, next) => {
         res.send(user);
 
     })
-    .post('/register', (req, res, next) => {
-
-        const user = register(req.body);
-        res.send(user);
-
+    .post('/register', async (req, res, next) => {
+        try {
+            const user = await register(req.body.firstName, req.body.lastName, req.body.email, req.body.birthdate, req.body.gender);
+            res.send(user);
+        } catch (error) {
+            next(error);
+        }
     })
-    .post('/login', (req, res, next) => {
-
-        login(req.body.email, req.body.password)
-            .then(user => {
-                res.send(user);
-            }).catch(next)
-
-
+    .post('/login', async (req, res, next) => {
+        try {
+            const user = await login(req.body.email, req.body.password);
+            res.send(user);
+        } catch (error) {
+            next(error);
+        }
     })
     .patch('/:id', (req, res, next) => {
 

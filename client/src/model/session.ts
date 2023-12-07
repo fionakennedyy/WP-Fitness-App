@@ -8,7 +8,7 @@ const toast = useToast();
 
 const session = reactive({  // reactive means changes to its properties will trigger reactivity
   user: null as User | null,
-  token: null as string | null,
+  token: null as string | null, 
   redirectUrl: null as string | null,
   messages: [] as {
     type: string,
@@ -62,6 +62,25 @@ export function useLogin() {
     logout() {
       session.user = null;
       router.push("/login")
+    },
+  };
+}
+
+// Register system
+export function useRegister() {
+  const router = useRouter();
+
+  return {
+    async register(firstName: string, lastName: string, email: string, password: string, birthdate: string, gender: string): Promise<User | null> {
+      // Call api function to register the user
+      const response = await api("users/register", {firstName, lastName, email, password, birthdate, gender});
+
+      toast.success("Registration completed successfully");
+      // Set user and token in the session, then redirect
+      session.user = response.user;
+      session.token = response.token;
+      router.push(session.redirectUrl || "/");
+      return session.user;
     },
   };
 }

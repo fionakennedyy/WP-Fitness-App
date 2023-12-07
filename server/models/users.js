@@ -73,6 +73,7 @@
 /**
 * @type { {users: User[]} }
 */
+const { connect } = require("http2");
 const data = require("../data/users.json");
 
 const jwt = require('jsonwebtoken');
@@ -125,29 +126,41 @@ function create(values) {
 * @param {BaseUser} values - The user to create.
 * @returns {User} The created user.
 */
-function register(values) {
-    // register is like create but with validation
-    // and some extra logic
+async function register(firstName, lastName, email, password, birthdate, gender) {
 
-    const exists = data.users.some(x => x.username === values.username);
-    if (exists) {
-        throw new Error('Username already exists');
+    // Authentication
+    if(!firstName || !lastName || !email || !password || !birthdate || !gender) {
+        throw new Error('All fields must be filled out');
     }
-
-    if (values.password.length < 8) {
+    if (password.length < 8) {
         throw new Error('Password must be at least 8 characters');
     }
 
-    // TODO: Make sure user is create with least privileges
+    // Connect to db
+    const db = await connect();
+    const usersCol = db.collection('users');
+    const user = await usersCol.findOne({ email });
 
-    const newItem = {
-        id: data.users.length + 1,
-        ...values,
+    if (user) {
+        throw new Error('An account already exists with this email');
+    }
+
+    const newUser = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        birthdate: birthdate,
+        gender: gender,
+        role: 'user'
     };
 
-    data.users.push(newItem);
-    return newItem;
-
+    const result = await usersCol.insertOne(newUser)
+    if (result.insertedCount === 1) {
+        return newUser;
+    }
+    else {
+        throw new Error('Failed to register user');
+    }
 }
 
 /**
