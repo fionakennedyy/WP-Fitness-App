@@ -1,3 +1,9 @@
+/*
+    Controller:
+    Manages flow of data between the model and the view.
+    Handles user input, processes requests, updates model, and triggers changes in view.
+*/
+
 const express = require('express');
 const { getAll, get, search, create, update, remove, login, register } = require('../models/users');
 const { requireUser } = require('../middleware/authorization');

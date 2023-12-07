@@ -6,8 +6,11 @@ import Toast from "vue-toastification";
 import App from './App.vue';
 import router from './router';
 
-const app = createApp(App)
+// Create Vue application instance
+const app = createApp(App);
 
-app.use(router).use(Toast, {})
+// Use router + Toast plugin in application
+app.use(router).use(Toast, {});
 
-app.mount('#app')
+// Mount application to the element with the id 'app' in the HTML file
+app.mount('#app');

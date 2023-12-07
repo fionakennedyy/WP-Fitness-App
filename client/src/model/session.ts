@@ -6,7 +6,7 @@ import { type User, getUserByEmail } from "./users";
 
 const toast = useToast();
 
-const session = reactive({
+const session = reactive({  // reactive means changes to its properties will trigger reactivity
   user: null as User | null,
   token: null as string | null,
   redirectUrl: null as string | null,
@@ -17,17 +17,20 @@ const session = reactive({
   loading: 0
 });
 
+// Function to make API requests with error handling and loading indicator
 export function api(action: string, body?: unknown, method?: string, headers?: any) {
   session.loading++;
 
+  // Attach the Authorization header if a token exists
   if (session.token) {
     headers = headers ?? {};
     headers['Authorization'] = `Bearer ${session.token}`;
   }
 
+  // Make an API request using myFetch module
   return myFetch.api(`${action}`, body, method, headers)
-    .catch(err => showError(err))
-    .finally(() => session.loading--);
+    .catch(err => showError(err)) // Handle errors
+    .finally(() => session.loading--);  // Decrement loading indicator after API call
 }
 
 export function getSession() {
@@ -46,14 +49,16 @@ export function useLogin() {
 
   return {
     async login(email: string, password: string): Promise<User | null> {
+      // Call the api function to log in
       const response = await api("users/login", { email, password });
 
+      // Set user and token in the session, then redirect
       session.user = response.user;
       session.token = response.token;
-
       router.push(session.redirectUrl || "/");
       return session.user;
     },
+    // Log out by setting user to null and redirecting
     logout() {
       session.user = null;
       router.push("/login")

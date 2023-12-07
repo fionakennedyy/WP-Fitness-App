@@ -1,3 +1,10 @@
+/*
+  Model:
+  Data and business logic.
+  Encapsulates data structure, database operations,
+  and rules/logic related to manipulation of data.
+*/
+
 /**
 * @typedef {Object} Bank
 * @property {string} cardExpire
