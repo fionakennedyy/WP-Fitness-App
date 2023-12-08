@@ -2,6 +2,8 @@
 
 <script lang="ts">
 import { getSession } from "@/model/session";
+import { api } from "@/model/myFetch";
+import { type Comment } from "@/model/comments";
 const session = getSession();
 
 export default {
@@ -53,50 +55,104 @@ export default {
         logWorkoutModal.style.display = 'none';
       }
     },
-    submitForm() {
-      // Handle form submission
-      // Push form data to the array
-      this.formDataArray.push({
-        id: Date.now(), // Generate a unique ID
-        title: this.formData.title,
-        type: this.formData.type,
-        duration: this.formData.duration,
-        date: this.formData.date,
-        userID: parseInt(this.formData.userID),
-        userName: this.concatenatedName,
-      });
+    async submitForm() {
+      try {
+        // Make an API request to create a new activity
+        const response = await api('/activities', {
+          title: this.formData.title,
+          type: this.formData.type,
+          duration: this.formData.duration,
+          date: this.formData.date,
+          userID: parseInt(this.formData.userID),
+          userName: this.concatenatedName,
+        }, 'POST');
 
-      // Clear the form
-      this.formData.title = "";
-      this.formData.type = "";
-      this.formData.duration = "";
-      this.formData.date = "";
-      this.formData.userID = "";
+        // Check if the request was successful
+        if (response.id) {
+          // Assign the received data to formDataArray
+          this.formDataArray.push(response);
 
-      // Store formDataArray in local storage
-      localStorage.setItem('formDataArray', JSON.stringify(this.formDataArray));
-    },
-    deleteArticle(id: number) {
-      const index = this.formDataArray.findIndex(entry => entry.id === id);
-      if (index !== -1) {
-        this.formDataArray.splice(index, 1); // Remove the article
-        // Update local storage after deletion
-        localStorage.setItem('formDataArray', JSON.stringify(this.formDataArray));
+          // Clear the form
+          this.formData.title = "";
+          this.formData.type = "";
+          this.formData.duration = "";
+          this.formData.date = "";
+          this.formData.userID = "";
+        } else {
+          // Handle the case where the server indicates a failure
+          console.error('Failed to create activity:', response.error);
+        }
+      } catch (error) {
+        // Handle any unexpected errors
+        console.error('Error creating activity:', error);
       }
     },
-    /*getUserImage(userID: number) {
-      const user = this.formDataArray.find((user) => user.userID === userID);
-      return user ? user.image : 'https://bulma.io/images/placeholders/64x64.png';
-    }*/
+    async deleteArticle(id: number) {
+      try {
+        // Make API request to delete activity
+        await api(`/activities/${id}`, null, 'DELETE');
+
+        // Find index of activity
+        const index = this.formDataArray.findIndex(entry => entry.id === id);
+
+        // Check if activity exists
+        if (index !== -1) {
+          // Remove activity from formDataArray
+          this.formDataArray.splice(index, 1);
+        }
+      } catch (error) {
+        // Handle any unexpected errors
+        console.error('Error deleting activity:', error);
+      }
+    },
+    async created() {
+      try {
+        // Make API request to fetch activities
+        const response = await api('/activities', null, 'GET');
+
+        if (Array.isArray(response)) {
+          this.formDataArray = response;
+
+          // Log retrieved data
+          console.log('Fetched Data:', this.formDataArray);
+        } else {
+          // Server failure
+          console.error('Failed to fetch activities:', response.error);
+        }
+      } catch (error) {
+        console.error('Error fetching activities:', error);
+      }
+    },
+
+    async fetchComments(postID: number) {
+      try {
+        // Make API request to fetch comments for specific post
+        const data = await api(`/comments/${postID}`, null, 'GET');
+        this.comments = data;
+      } catch (error) {
+        console.error('Error fetching comments:', error);
+      }
+    },
+    async submitComment(postID: number, content: string) {
+      try {
+        // Make API request to post new comment
+        const data = await api('/comments', {
+          postID,
+          userID: session.user?.id,
+          content,
+        }, 'POST');
+
+        if (data.id) {
+          this.comments.push(data);
+        } else {
+          // Server failure
+          console.error('Failed to submit comment:', data.error);
+        }
+      } catch (error) {
+        console.error('Error submitting comment:', error);
+      }
+    },
   },
-  created() {
-    // Retrieve formDataArray from local storage
-    const storedData = localStorage.getItem('formDataArray');
-    if (storedData) {
-      this.formDataArray = JSON.parse(storedData);
-      console.log('Stored Data:', this.formDataArray);
-    }
-  }
 };
 </script>
 
@@ -195,6 +251,15 @@ export default {
         </div>
         <div class="media-right">
           <button class="delete" @click.prevent="deleteArticle(entry.id)"></button>
+        </div>
+        <div v-if="entry.comments && entry.comments.length > 0">
+          <h2 class="subtitle">Comments:</h2>
+          <ul>
+            <!-- Iterate over comments for the current post -->
+            <li v-for="comment in entry.comments" :key="comment.id">
+              <strong>{{ comment.userName }}</strong>: {{ comment.content }}
+            </li>
+          </ul>
         </div>
       </article>
 
